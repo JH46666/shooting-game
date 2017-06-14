@@ -147,7 +147,7 @@ var GAME = {
     this.draw();
     // 如果按了空格
     if (keyBoard.pressedSpace) {
-      this.pause();
+      // this.pause();
       return;
     }
     // 如果没有目标元素，则证明通关了
