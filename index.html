@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./style.css">
+  <style></style>
+  <title>射击游戏</title>
+</head>
+<body>
+  <div id="game" data-status="start">  
+    <div class="game-panel">
+      <section class="game-intro">
+        <h1 class="section-title">射击游戏</h1>
+        <p class="game-desc">这是一个令人欲罢不能的射击游戏，使用键盘方向键操作你的飞机，
+一起来消灭宇宙怪兽吧！</p>
+        <p class="game-level">当前Level: 1</p>
+        <button class="js-play button">开始游戏</button>
+      </section>
+      <section class="game-failed">
+        <h1 class="section-title">游戏结束</h1>
+        <p class="game-info-text">最终得分: <span class="score"></span></p>
+        <button class="js-replay button">重新开始</button>
+      </section>
+      <section class="game-success">
+        <h1 class="section-title">通关成功</h1>
+        <p class="game-next-level game-info-text"></p>
+        <button class="js-next button">继续游戏</button>
+      </section>
+    </div>
+    <div class="game-info">
+          <span class="title">分数:</span>
+          <span class="score"></span>
+    </div>	
+    <canvas id="canvas" width="700" height="600">
+        <!-- 动画画板 -->
+    </canvas>
+  </div>
+  <script src="./js/lib/util.js" ></script>
+  <script src="./js/lib/element.js" ></script>
+  <script src="./js/config.js" ></script>
+  <script src="./js/enemy.js" ></script>
+  <script src="./js/bullet.js" ></script>
+  <script src="./js/plane.js" ></script>
+  <script src="./js/keyboard.js" ></script>
+  <!-- 主逻辑函数 -->
+  <script src="./js/app.js" ></script>
+</body>
+</html>
+
