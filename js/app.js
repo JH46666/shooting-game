@@ -124,6 +124,7 @@ var GAME = {
     context.clearRect(0, 0, canvasWidth, canvasHeight);
     if (type === 'failed') {
       totalScoreText.innerText = this.score;
+      this.score = 0;
     }
     this.setStatus(type);
   },
@@ -145,18 +146,14 @@ var GAME = {
     this.updateEnemies();
     // 绘画
     this.draw();
-    // 如果按了空格
-    if (keyBoard.pressedSpace) {
-      // this.pause();
-      return;
-    }
     // 如果没有目标元素，则证明通关了
     if (enemies.length === 0) {
       this.end('success');
       return;
     }
     // 判断最后一个元素是否已经到了底部，是则游戏结束
-    if (enemies[enemies.length - 1].y >= this.enemyLimitY - opts.enemySize) {
+    // console.log(enemies[enemies.length - 1].y)
+    if (enemies[enemies.length - 1].y >= this.enemyLimitY) {
       this.end('failed');
       return;
     }
@@ -180,8 +177,9 @@ var GAME = {
       plane.translate('right');
     }
     // 如果按了上方向键
-    if (keyBoard.pressedUp) {
+    if (keyBoard.pressedUp || keyBoard.pressedSpace) {
       keyBoard.pressedUp = false;
+      keyBoard.pressedSpace = false;
       plane.shoot();
     }
   },

@@ -19,6 +19,7 @@ KeyBoard.prototype = {
     switch(key) {
       case 32: 
       	this.pressedSpace = true;
+        break;
       case 37: 
         this.pressedLeft = true;
         this.heldLeft = true;
@@ -42,6 +43,7 @@ KeyBoard.prototype = {
     switch(key) {
       case 32: 
       	this.pressedSpace = false;	
+        break;
       case 37:
         this.heldLeft = false;
         this.pressedLeft = false;
