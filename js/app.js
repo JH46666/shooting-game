@@ -178,7 +178,7 @@ var GAME = {
   /**
    * 更新飞机
    */
-  updatePanel() {
+  updatePanel: function() {
     var plane = this.plane;
     var keyBoard = this.keyBoard;
     // 如果按了左方向键或者长按左方向键
@@ -199,7 +199,7 @@ var GAME = {
   /**
    * 更新敌人实例数组
    */
-  updateEnemies() {
+  updateEnemies: function() {
     var opts = this.opts;
     var padding = opts.padding;
     var enemySize = opts.enemySize;
