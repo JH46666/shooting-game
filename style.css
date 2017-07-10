@@ -95,7 +95,6 @@ a:hover{
 [data-status="playing"] .game-info {
   display: block;
 }
-
 [data-status="failed"] .game-failed, 
 [data-status="success"] .game-success,
 [data-status="all-success"] .game-all-success {
