@@ -5,7 +5,8 @@
 var CONFIG = {
   status: 'start', // 游戏开始默认为开始中
   level: 1, // 游戏默认等级
-  levelNum: 7, // 游戏默认每行10个aim
+  totalLevel: 6, // 总共的关卡
+  numPerLine: 7, // 游戏默认每行10个aim
   canvasPadding: 28, // 默认画布的间隔
   bulletSize: 10, // 默认子弹长度
   bulletSpeed: 10, // 默认子弹的移动速度

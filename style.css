@@ -13,7 +13,7 @@ canvas {
 }
 
 body{
-  background: #e7e7e7;
+  /*background: #e7e7e7;*/
   color: #fff;
   font-family: Verdana,Arial, sans-serif;
   font-size: 18px;
@@ -33,7 +33,7 @@ a:hover{
   background: #185da8;
   border-radius: 5px;
   display: block;
-  font-size: 24px;
+  font-size: 18px;
   margin-top: 20px;
   border: none;
   padding: 10px;
@@ -50,7 +50,7 @@ a:hover{
   height: 600px;
   position: relative;
   left: 50%;
-  top: 0;
+  top: 40px;
   margin: 0 0 0 -350px;
   background: linear-gradient(-180deg, #040024 0%, #07165C 97%);
 }
@@ -60,10 +60,7 @@ a:hover{
 	height: 600px;
 	position: absolute;/* 将UI置于画布之上 */
 }
-.game-intro, 
-.game-failed,
-.game-success,
-.game-info {
+.game-ui{
   display: none;
   padding: 55px;
   box-sizing: border-box;
@@ -100,7 +97,8 @@ a:hover{
 }
 
 [data-status="failed"] .game-failed, 
-[data-status="success"] .game-success {
+[data-status="success"] .game-success,
+[data-status="all-success"] .game-all-success {
   display: block;
   padding-top: 180px;
   background: url(./img/bg-end.png) no-repeat 380px 190px;

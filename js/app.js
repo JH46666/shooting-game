@@ -10,6 +10,11 @@ var context = canvas.getContext("2d");
 // 更新画布相关信息
 var canvasWidth = canvas.clientWidth;
 var canvasHeight = canvas.clientHeight;
+// 获取hash
+var hash = location.hash;
+var isBaseVersion = hash === '#base';
+
+
 
 
 /**
@@ -40,6 +45,9 @@ var GAME = {
     // 更新opts
     this.opts = opts;
     this.score = 0;
+    if (isBaseVersion) {
+      this.opts.totalLevel = 1;
+    }
     this.keyBoard = new KeyBoard();
     // 处于开始状态
     this.status = 'start';
@@ -49,18 +57,22 @@ var GAME = {
   bindEvent: function() {
     var self = this;
     var playBtn = document.querySelector('.js-play');
-    var replayBtn = document.querySelector('.js-replay');
+    var replayBtns = document.querySelectorAll('.js-replay');
     var nextBtn = document.querySelector('.js-next');
     // 开始游戏按钮绑定
     playBtn.onclick = function() {
       self.play();
     };
-    // 开始游戏按钮绑定
-    replayBtn.onclick = function() {
-      self.opts.level = 1;
-      self.play();
-    };
-    // 开始游戏按钮绑定
+    // 重新玩游戏按钮绑定
+    replayBtns.forEach(function (btn) {
+      btn.onclick = function() {
+        self.opts.level = 1;
+        self.play();
+        self.score = 0;
+        totalScoreText.innerText = self.score;
+      };
+    })
+    // 下一关按钮绑定
     nextBtn.onclick = function() {
       self.opts.level += 1;
       self.play();
@@ -84,14 +96,14 @@ var GAME = {
     var self = this;
     var padding = this.padding;
     var level = opts.level;
-    var levelNum = opts.levelNum;
+    var numPerLine = opts.numPerLine;
     var enemyGap = opts.enemyGap;
     var enemySize = opts.enemySize;
     var enemySpeed = opts.enemySpeed;
     this.enemies = []; // 清空射击目标对象数组
     // 创建基础 enmey 实例
     for (var i = 0; i < level; i++) {
-      for (var j = 0; j < levelNum; j++) {
+      for (var j = 0; j < numPerLine; j++) {
         // 每个元素的
         var initOpt = {
           x: padding + j * (enemySize + enemyGap), 
@@ -122,10 +134,6 @@ var GAME = {
   end: function(type) {
     // 先清理当前画布
     context.clearRect(0, 0, canvasWidth, canvasHeight);
-    if (type === 'failed') {
-      totalScoreText.innerText = this.score;
-      this.score = 0;
-    }
     this.setStatus(type);
   },
   /**
@@ -148,7 +156,12 @@ var GAME = {
     this.draw();
     // 如果没有目标元素，则证明通关了
     if (enemies.length === 0) {
-      this.end('success');
+      // 如果是第六关通过成功
+      if (self.opts.level === self.opts.totalLevel) {
+        this.end('all-success');
+      } else {
+        this.end('success');
+      }
       return;
     }
     // 判断最后一个元素是否已经到了底部，是则游戏结束
