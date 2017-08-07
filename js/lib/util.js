@@ -10,7 +10,7 @@ function(callback) {
 };
 
 /**
- * [getHorizontalBoundary] 获取目标对象实例们中最小的横坐标和最大的横坐标
+ * 获取目标对象实例们中最小的横坐标和最大的横坐标
  */
 function getHorizontalBoundary(arrs) {
   var minX, maxX;
@@ -32,3 +32,34 @@ function getHorizontalBoundary(arrs) {
     maxX: maxX
   }
 }
+
+/**
+ * 资源加载
+ * @param  {Array} resources 资源列表
+ * @return {[type]}           [description]
+ */
+function resourceOnload(resources, callback) {
+ var total = resources.length;
+ var finish = 0;
+ var images = [];
+ for(var i = 0 ; i < total; i++){
+    images[i] = new Image()
+    images[i].src = resources[i]
+    // 图片加载完成
+    images[i].onload = function(){
+       // 加载完成
+       finish++
+       if( finish == total){
+          //全部加载完成
+          callback(images);
+       }
+    }
+ }
+}
+
+
+
+var util = {
+  getHorizontalBoundary: getHorizontalBoundary,
+  resourceOnload: resourceOnload
+};
